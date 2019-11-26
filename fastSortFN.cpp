@@ -1,5 +1,8 @@
 #include "header.h"
 
+/************************************************************************/
+/*		                  基于迭代的快速查找                            */
+/************************************************************************/
 #ifdef fastSortFN
 int FindPos(int* a, int L, int H)
 {
@@ -34,27 +37,54 @@ void QuickSort(int* a, int L, int H)
 	}
 
 }
-
-void fastSort()
+int intInput(int**data)
+//void charInput(int arr[], int &i) //或者,这样也OK
 {
-	int  a[] = { 2,8,34,1,9,55,4,-9,-299 };
-	int num = (sizeof(a) / sizeof(a[0]));
-	int i;
-	printf("原始数组中的元素是: \n");
-	for (i = 0; i < num; i++)
+	int i = 0;
+	int max = 100;
+	int* tmp = 0;
+	*data = (int*)malloc(sizeof(int) * max);
+	for (i = 0; scanf("%d", *data + i); ++i)
 	{
-		printf("%d  ", a[i]);
+		if (i > max) // 如果buf已经满了, 那么内存扩大一倍
+			*data = (int*)realloc(*data, sizeof(int) * (max *= 2));
+	}
+	
+	return i;
+}
+
+
+void fastSort(void)
+{
+	int i=0,K=0;
+	int* tmp;
+	printf("\n");
+	printf("******************************************************\n");
+
+	printf("输入数值以空格隔开[以##结束]\n");
+	K = intInput(&tmp);
+	printf("\n");
+	printf("输入的字符串以空格隔断的整数有%d个元素\n", K);
+
+	printf("******************************************************\n");
+	printf("原始字符串中的元素是: \n");
+	for (i = 0; i < K; i++)
+	{
+		printf("%d  ", tmp[i]);
 	}
 	printf("\n");
 
-	QuickSort(a, 0, num - 1); //注意,参数2\3是数组下标值
+	printf("******************************************************\n");
+
+	QuickSort(tmp, 0, K-1); //注意,参数2\3是数组下标值
 
 	printf("\n");
 	printf("快速排序之后数组中的元素是: \n");
-	for (i = 0; i < num; i++)
+	for (i = 0; i < K; i++)
 	{
-		printf("%d  ", a[i]);
+		printf("%d  ", tmp[i]);
 	}
 	printf("\n");
+
 }
 #endif

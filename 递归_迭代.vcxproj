@@ -127,7 +127,8 @@
   <ItemGroup>
     <ClCompile Include="arrayStrLength.cpp" />
     <ClCompile Include="fastSortFN.cpp" />
-    <ClCompile Include="字符串拼接查找.cpp" />
+    <ClCompile Include="KMP.cpp" />
+    <ClCompile Include="strStract.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>

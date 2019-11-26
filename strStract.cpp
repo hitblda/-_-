@@ -7,11 +7,39 @@ int getlength(char* str)
 	计算字符串的长度,不包括'\0'
 	*/
 	int num = 0;
-	while (*str)
+	//while(*str)   //效果和strlen(str)一样
+	//while (*str != '#')     //
+	//{
+	//	num++;
+	//	str++;
+	//}
+
+	//以两个连续的##为结束
+	static char flag = 0;
+	while (flag!=2)     //
 	{
+		if (flag ==1)
+		{
+			if (*str == '#')
+			{
+				flag = 2;
+			}
+			else
+			{
+				flag = 0;
+			}
+		} 
+		else
+		{
+			if (*str == '#')
+			{
+				flag = 1;
+			}
+		}
 		num++;
 		str++;
 	}
+	flag = 0;
 	return num;
 }
 
