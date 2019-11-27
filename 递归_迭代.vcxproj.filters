@@ -30,6 +30,9 @@
     <ClCompile Include="KMP.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="2ndPointer.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">

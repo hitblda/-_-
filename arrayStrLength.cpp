@@ -3,6 +3,47 @@
 /************************************************************************/
 /*	           数组\字符串 长度的strlen()和sizeof() 验证                */
 /************************************************************************/
+int getlength(char* str)
+{
+	/*
+	计算字符串的长度,不包括'\0'
+	*/
+	int num = 0;
+	//while(*str)   //效果和strlen(str)一样
+	//while (*str != '#')     //以一个#结束
+	//{
+	//	num++;
+	//	str++;
+	//}
+
+	//以两个连续的##为结束
+	static char flag = 0;
+	while (flag != 2)     //
+	{
+		if (flag == 1)
+		{
+			if (*str == '#')
+			{
+				flag = 2;
+			}
+			else
+			{
+				flag = 0;
+			}
+		}
+		else
+		{
+			if (*str == '#')
+			{
+				flag = 1;
+			}
+		}
+		num++;
+		str++;
+	}
+	flag = 0;
+	return num;
+}
 
 int  charLenTest(char* str)
 {
@@ -42,7 +83,6 @@ int  charLenTest(char* str)
 	int tmpL = getlength( str);
 	printf("tmpL = getlength( str)的值是: %d  \n", tmpL);
 	
-
 	return  tmpL;
 }
 

@@ -4,6 +4,7 @@
 /*		                  基于迭代的快速查找                            */
 /************************************************************************/
 #ifdef fastSortFN
+
 int FindPos(int* a, int L, int H)
 {
 	a[H] = a[H];
@@ -18,7 +19,6 @@ int FindPos(int* a, int L, int H)
 		while (L < H && a[L] <= val)
 			++L;
 		a[H] = a[L];
-
 	}
 	a[L] = val;
 	printf("pos的值是: %d  \n", L);
@@ -38,7 +38,6 @@ void QuickSort(int* a, int L, int H)
 
 }
 int intInput(int**data)
-//void charInput(int arr[], int &i) //或者,这样也OK
 {
 	int i = 0;
 	int max = 100;
@@ -46,10 +45,9 @@ int intInput(int**data)
 	*data = (int*)malloc(sizeof(int) * max);
 	for (i = 0; scanf("%d", *data + i); ++i)
 	{
-		if (i > max) // 如果buf已经满了, 那么内存扩大一倍
+		if (i > max) // 如果*data已经满了, 那么内存扩大一倍
 			*data = (int*)realloc(*data, sizeof(int) * (max *= 2));
-	}
-	
+	}	
 	return i;
 }
 
@@ -85,6 +83,5 @@ void fastSort(void)
 		printf("%d  ", tmp[i]);
 	}
 	printf("\n");
-
 }
 #endif
