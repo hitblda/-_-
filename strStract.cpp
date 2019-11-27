@@ -141,3 +141,54 @@ int ViolentMatch(char* s, char** pp)
 	else
 		return -1;
 }
+
+int get_non_space_cnt(/*inout */char** str,/*out*/ int* cnt_p)
+{
+	char* k = NULL;
+
+	char* tmp = NULL;
+
+	int len = 0;
+	int cnt = 0;
+
+	if (str == NULL || cnt_p == NULL) {
+		fprintf(stderr, " str == NULL || cnt_p == NULL \n");
+		return -1;
+	}
+	printf("需要分配的空间大小为: %d\n", strlen(*str));
+	tmp = (char*)malloc(strlen(*str));
+	if (tmp == NULL)
+	{
+		return -1;
+	}
+
+	//q = *str + strlen(*str) - 1; //指向字符串的末尾元素
+	//左边遍历
+	//while ((*p == ' ' && *p !='\0')  ) {
+
+	k = *str;//指向字符串首元素
+
+	while (*k != '\0')  //从头到尾
+	{
+		if (isspace(*k))
+		{
+			cnt++;  //统计空格的个数
+		} 
+		else   //非空格就存入临时指针
+		{
+			tmp[len++] = *k;
+		}
+		
+		k++;
+	}
+	if (cnt>0)
+	{
+		tmp[len] = '\0'; // 如果新的字符串长度变短,那么需要补'\0'
+	}
+	 
+	*cnt_p = cnt;
+	//去除空格键的字符串
+	*str = tmp;
+
+	return 0;
+}

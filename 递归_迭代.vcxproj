@@ -125,7 +125,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="2ndPointer.cpp" />
     <ClCompile Include="arrayStrLength.cpp" />
     <ClCompile Include="fastSortFN.cpp" />
     <ClCompile Include="KMP.cpp" />

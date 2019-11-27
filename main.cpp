@@ -89,6 +89,14 @@ void charIO_test(char * arr, int& i)
 
 void main(void)
 {
+#if 0
+//////////////////////////////////////////////////////////////////////////
+/************************************************************************/
+/* 用于测试主函数中以栈分配内存,输入第一串字符串,
+   被调函数中以堆分配内存,输入第二串字符串,
+   然后,在第一字符串里面寻找是否有第二字符串出现
+*/
+/************************************************************************/
 	unsigned int lenStr = 0;
 
 	int num[ArrayNo] = {0};
@@ -133,12 +141,31 @@ void main(void)
 		free(A);
 		A = NULL;
 	}
+#endif
 
 #if 0
 	//快速排序,需针对整数不能是字符串
 	fastSort();  
 #endif
+
+#if 1
+	char* str = (char *)" 1     8 10 c ef      25 ";
+	int len=0,cnt = 0;
+	len = strlen(str);
+	printf("被测长度为%d 的字符串是: %s\n",len ,str);
+	get_non_space_cnt(&str, &cnt);
+
+	printf("被测字符串中空格字符的个数是: cnt = %d\n", cnt);
+	printf("删除空格后字符串的长度为%d 字符串内容是: %s\n ", len-cnt, str);
+
+	if (str != NULL)
+	{
+		free(str);
+		str = NULL;
+	}
+
+#endif
 	
 
-	system("pause");
+ 	system("pause");
 }
