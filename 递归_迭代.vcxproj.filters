@@ -30,6 +30,9 @@
     <ClCompile Include="KMP.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="二级指针做函数参数.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">

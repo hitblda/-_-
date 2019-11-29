@@ -130,6 +130,7 @@
     <ClCompile Include="KMP.cpp" />
     <ClCompile Include="strStract.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="二级指针做函数参数.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h" />

@@ -87,7 +87,7 @@ void charIO_test(char * arr, int& i)
 /////////////////////////////////////////////////////////////
 
 
-void main(void)
+int main(void)
 {
 #if 0
 //////////////////////////////////////////////////////////////////////////
@@ -148,15 +148,16 @@ void main(void)
 	fastSort();  
 #endif
 
-#if 1
-	char* str = (char *)" 1     8 10 c ef      25 ";
-	int len=0,cnt = 0;
+#if 0
+
+	char* str = (char*)" 1     8 10 c ef      25 ";
+	int len = 0, cnt = 0;
 	len = strlen(str);
-	printf("被测长度为%d 的字符串是: %s\n",len ,str);
+	printf("被测长度为%d 的字符串是: %s\n", len, str);
 	get_non_space_cnt(&str, &cnt);
 
 	printf("被测字符串中空格字符的个数是: cnt = %d\n", cnt);
-	printf("删除空格后字符串的长度为%d 字符串内容是: %s\n ", len-cnt, str);
+	printf("删除空格后字符串的长度为%d 字符串内容是: %s\n ", len - cnt, str);
 
 	if (str != NULL)
 	{
@@ -165,7 +166,110 @@ void main(void)
 	}
 
 #endif
-	
+
+#if 0
+	char* buf1 = NULL;
+	char* buf2 = NULL;
+	char* buf3 = NULL;
+	int len1 = 0;
+	int len2 = 0;
+	int len3 = 0;
+
+
+	if (get_mem(&buf1, &len1, &buf2, &len2) < 0) {
+		return -1;
+	}
+	printf("buf1: %s, buf2:%s\n", buf1, buf2);
+	free_mem(&buf1, &buf2);
+
+	if (getMem(&buf3, &len3) < 0) {
+		return -1;
+	}
+	printf("buf3: %s\n", buf3);
+	freeMem(&buf3);
+
+#endif
+
+#if 0
+	/************************************************************************/
+	/*          一级指针的用法:输入 ;二级指针的用法:回传                    */
+	/************************************************************************/
+
+	char* str = (char *)" 1     8 10 c ef      25   ";
+	char tmp[1024];
+	char* key = NULL;
+
+	int len=0,cnt = 0;
+	len = strlen(str);
+//	printf("被测的字符串是: %s长度为%d \n" ,str, len);
+
+	getMem(&key, &len);
+	printf("动态分配了多大的空间:%d\n",len);
+	//getMem(&tmp, &len);
+	//strcpy(key, str);  //针对文本文件
+	//memcpy(tmp, str, len);
+	printf("请输入若干字符:\n");
+	scanf("%[^\n]",tmp);
+	getchar(); //getchar函数可以识别空格和回车，用它可以将回车吸收掉。
+
+	cnt = strlen(tmp);
+	printf("一共输入了%d个字符:\n",cnt);
+
+	strcpy(key, (char*)&tmp);  //针对文本文件
+	printf("复制过来的内容是:[begin]%s[end]\n", key);
+	len = strlen(tmp);
+	get_non_space_cnt(&key, &cnt);//通过二级指针改变原始值,传出来
+	printf("被测字符串中空格字符的个数是: cnt = %d\n", cnt);
+	printf("删除空格后字符串的长度为%d 字符串内容是:[begin]%s[end]\n", len - cnt, key);
+
+	printf("被测的字符串是:[begin]%s[end]长度为%d \n", str, len);
+	len = trimSpace(&str, tmp); //一维字符串数组 取地址 =?=> 二级字符串指针 
+
+//	freeMem(&key);
+
+#endif
+
+#if 0
+	/************************************************************************/
+	/*                       二级指针的用法测试                             */
+	/************************************************************************/
+
+	char** my_array = NULL;
+	int num = 5;
+	my_array = getMem2Pointer(num);
+	if (my_array ==NULL)
+	{
+		fprintf(stderr, "my_array ==NULL");
+		return -1;
+	}
+	print2Pointer(my_array, num);
+	sort_array(my_array,num);
+	print2Pointer(my_array,num);
+ 
+	freeMem2Pointer(my_array, num);
+
+
+
+#endif
+
+#if 1
+
+
+	/************************************************************************/
+	/*                              三级指针                                */
+	/************************************************************************/
+	char** my_array = NULL;
+	int num = 5;
+	getMem3Pointer(&my_array, num);
+	    
+	//print2Pointer(my_array, num);
+	//sort_array(my_array, num);
+	//print2Pointer(my_array, num);
+
+	freeMem3Pointer(&my_array, num);
+
+#endif
 
  	system("pause");
+	return 0;
 }
