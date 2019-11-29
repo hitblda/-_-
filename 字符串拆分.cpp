@@ -106,6 +106,7 @@ int splitStrStack(char* str, char ch, char ***arrP, int* cnt)
 	int len_p = 0;
 	char** array = NULL;
 	int str_len = 0;
+	int ret = 0;
 	/************************************************************************/
 	/*                
 		1.根据拆分的个数,在堆上面开辟确定个数的指针数组;
@@ -132,8 +133,10 @@ int splitStrStack(char* str, char ch, char ***arrP, int* cnt)
 	if (array == NULL )
 	{
 		fprintf(stderr, "malloc array == NULL\n");
-		return -1;
+		ret = -1;
+		goto END;  //内存开辟失败就释放
 	}
+	memset(array, 0, cnt_p);
 
 	p = str; 
 	q = p;
@@ -146,6 +149,14 @@ int splitStrStack(char* str, char ch, char ***arrP, int* cnt)
 		/************************************************************************/
 		str_len = p -q +1;
 		array[cnt_p] = (char*)malloc(sizeof(char) * (str_len + 1));
+		if (array[cnt_p] == NULL)
+		{
+			fprintf(stderr, "malloc array[cnt_p] failed !\n");
+			ret= -1;
+			goto END; //内存开辟失败就释放
+		}
+		memset(array[cnt_p], 0, str_len);
+
 		strncpy(array[cnt_p], q, p - q);   //
 		//strncpy(char *dest, const char *src, size_t n);
 		//会将字符串src前n个字符拷贝到字符串dest,但不追加'\0'不同于strcpy会追加'\0'
@@ -167,7 +178,12 @@ int splitStrStack(char* str, char ch, char ***arrP, int* cnt)
 		/************************************************************************/
 		len_p = str + strlen(str) - q;
 		array[cnt_p] = (char*)malloc(sizeof(char)*(len_p+1));//
-
+		if (array[cnt_p] == NULL)
+		{
+			fprintf(stderr, "malloc array[cnt_p] failed !\n");
+			ret = -1;
+			goto END; //内存开辟失败就释放
+		}
 		//strncpy(*array+cnt_p, q, len_p);   //错误!!!
 		//strncpy(*(array+cnt_p), q, len_p);  //OK
 		strncpy(array[cnt_p], q, len_p);  
@@ -195,6 +211,12 @@ int splitStrStack(char* str, char ch, char ***arrP, int* cnt)
 	{
 		*arrP = array;
 		*cnt = cnt_p;
+	}
+
+END:
+	if (ret != 0)
+	{
+		freeMem3Pointer(&array, cnt_p);
 	}
 
 	return 0;
