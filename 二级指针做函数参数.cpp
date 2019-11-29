@@ -110,18 +110,22 @@ void getMem3Pointer(char*** myArray, int num)
 void freeMem3Pointer(char*** array_p, int num)
 {
 	int i = 0;
-	if (array_p == NULL)
+	if (array_p == NULL)	
 	{
 		return;
 	}
 	char** array = *array_p;
 
-	for (i = 0; i < num; i++)
+	if (array != NULL)  //当有指向才释放一个个字符串
 	{
-		if (array[i] != NULL)  //释放一个个字符串
+		for (i = 0; i < num; i++)
 		{
-			free(array[i]);
-			array[i] = NULL;
+			if (array[i] != NULL)
+			{
+				free(array[i]);
+				array[i] = NULL;
+			}
+
 		}
 	}
 
