@@ -141,10 +141,11 @@ int splitStrStack(char* str, char ch, char ***arrP, int* cnt)
 	while ((p=strchr(p, ch)) != NULL)
 	{
 		/************************************************************************/
-		/* 找到一个开辟一个,开辟的长度多少?根据该字符串里面的字符个数                                                                     */
+		/* 找到一个开辟一个,开辟的长度多少?根据该字符串里面的字符个数           */
+		/*		                    尤其注意,长度!!                         	*/
 		/************************************************************************/
 		str_len = p -q +1;
-		array[cnt_p] = (char*)malloc(str_len);
+		array[cnt_p] = (char*)malloc(sizeof(char) * (str_len + 1));
 		strncpy(array[cnt_p], q, p - q);   //
 		//strncpy(char *dest, const char *src, size_t n);
 		//会将字符串src前n个字符拷贝到字符串dest,但不追加'\0'不同于strcpy会追加'\0'
@@ -160,9 +161,13 @@ int splitStrStack(char* str, char ch, char ***arrP, int* cnt)
 	//针对最后一个阶段
 	if (*q != '\0')
 	{
+		/************************************************************************/
+		/*					开辟空间!! 根据该字符串里面的字符个数		         */
+		/*		                    尤其注意,长度!!                         	*/
+		/************************************************************************/
 		len_p = str + strlen(str) - q;
+		array[cnt_p] = (char*)malloc(sizeof(char)*(len_p+1));//
 
-		array[cnt_p] = (char*)malloc(len_p);
 		//strncpy(*array+cnt_p, q, len_p);   //错误!!!
 		//strncpy(*(array+cnt_p), q, len_p);  //OK
 		strncpy(array[cnt_p], q, len_p);  
@@ -191,5 +196,7 @@ int splitStrStack(char* str, char ch, char ***arrP, int* cnt)
 	*arrP = array;
 	return 0;
 }
+
+
 
 
