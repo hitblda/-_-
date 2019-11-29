@@ -332,8 +332,9 @@ int main(void)
 			printf("array[%d]中的%d个字符是%c\n", i, j, array[i][j]);
 			j++;
 		}
-
 	}
+
+	freeMem3Pointer(&array, cnt);
 
 #endif
 

@@ -118,15 +118,15 @@ void freeMem3Pointer(char*** array_p, int num)
 
 	for (i = 0; i < num; i++)
 	{
-		if (array[i] != NULL)
+		if (array[i] != NULL)  //释放一个个字符串
 		{
 			free(array[i]);
 			array[i] = NULL;
 		}
 	}
 
-	freeMem(array);
-	*array_p = NULL; //使二级指针的地址为0
+	freeMem(array);		//释放字符串数组
+	*array_p = NULL; //使三级指针的内容,即二级指针的地址为NULL (0)
 }
 
 

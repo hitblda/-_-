@@ -189,14 +189,16 @@ int splitStrStack(char* str, char ch, char ***arrP, int* cnt)
 		printf("被复制过来的内容是%s\n", *(array + cnt_p));
 		printf("被复制过来的内容是%s\n", array[cnt_p]);
 		cnt_p++;
-
 	}
 
-	*cnt = cnt_p;
-	*arrP = array;
+	if (array != NULL)
+	{
+		*arrP = array;
+		*cnt = cnt_p;
+	}
+
 	return 0;
 }
-
 
 
 
