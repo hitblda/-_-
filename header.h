@@ -52,6 +52,12 @@ void sort_array(char** array, int num);
 void getMem3Pointer(char*** myArray, int num);
 void freeMem3Pointer(char*** array, int num);
 
+/************************************************************************/
+/*                           ×Ö·û´®´¦Àíº¯Êı                             */
+/************************************************************************/
+int splitStr(char* str, char ch, char arr[][10], int* cnt);
+int splitStrStack(char* str, char ch, char*** arr, int* cnt);
+
 #endif
 
 

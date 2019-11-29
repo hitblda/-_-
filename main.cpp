@@ -86,7 +86,6 @@ void charIO_test(char * arr, int& i)
 
 /////////////////////////////////////////////////////////////
 
-
 int main(void)
 {
 #if 0
@@ -248,13 +247,9 @@ int main(void)
  
 	freeMem2Pointer(my_array, num);
 
-
-
 #endif
 
-#if 1
-
-
+#if 0
 	/************************************************************************/
 	/*                              三级指针                                */
 	/************************************************************************/
@@ -267,6 +262,78 @@ int main(void)
 	//print2Pointer(my_array, num);
 
 	freeMem3Pointer(&my_array, num);
+
+#endif
+
+#if 1
+	/************************************************************************/
+	/*                              字符串拆分                              */
+	/************************************************************************/
+	char* str = (char*)"!@#$%,FGHHH,H@@@JKUY,T&**9,Aha";
+#if 0
+	/************************************************************************/
+	/* 栈上面开辟                                                                      */
+	/************************************************************************/
+	char arr[5][10]; //第一维度:有多少个串,第二个维度:每个串最多可以有多少个字符
+	int cnt = 0;
+	int ret = 0;
+	int i = 0,j=0;
+
+	printf("原始字符串是\n%s\n", (str + i));
+//	printf("\n");
+	ret = splitStr(str,',',arr,&cnt);
+	if (ret<0)
+	{
+		fprintf(stderr, "splitStr error\n");
+		return -1;
+	}
+	printf("划分的数组个数是%d\n", cnt);
+
+	for (i = 0;i<cnt;i++)
+	{
+		printf("第%d个字符数组的内容是%s\n",i, arr[i]);
+
+		cnt = strlen(arr[i]);
+		j = 0;
+		while (j<cnt)
+		{
+			printf("arr[%d]中的%d个字符是%c\n",j, i, arr[i][j]);
+			j++;
+		}
+
+	}
+#endif	
+	/************************************************************************/
+	/* 堆上面开辟                                                                     */
+	/************************************************************************/
+	char** array = NULL;
+	int cnt = 0;
+	int ret = 0;
+	int i = 0, j = 0;
+
+	printf("原始字符串是\n%s\n", (str + i));
+	//	printf("\n");
+	ret = splitStrStack(str, ',', &array, &cnt);
+	if (ret < 0)
+	{
+		fprintf(stderr, "splitStr error\n");
+		return -1;
+	}
+	printf("划分的数组个数是%d\n", cnt);
+
+	for (i = 0; i < cnt; i++)
+	{
+		printf("第%d个字符数组的内容是%s\n", i, array[i]);
+
+		cnt = strlen(array[i]);
+		j = 0;
+		while (j < cnt)
+		{
+			printf("array[%d]中的%d个字符是%c\n", i, j, array[i][j]);
+			j++;
+		}
+
+	}
 
 #endif
 
