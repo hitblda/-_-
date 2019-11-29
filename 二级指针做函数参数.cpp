@@ -125,7 +125,6 @@ void freeMem3Pointer(char*** array_p, int num)
 				free(array[i]);
 				array[i] = NULL;
 			}
-
 		}
 	}
 

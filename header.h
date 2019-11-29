@@ -3,6 +3,8 @@
 
 #ifndef HEADER_H
 
+typedef unsigned int u32;
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
@@ -42,7 +44,7 @@ int get_mem(/*out */char** mem1, int* mem_len1, char** mem2, int* mem_len2); voi
 void free_mem(char** mem1, char** mem2);
 
 /************************************************************************/
-/*			二级指针                                                    */
+/*			                    二级指针                                */
 /************************************************************************/
 char** getMem2Pointer(int num);
 void freeMem2Pointer(char** array, int num);
@@ -57,6 +59,15 @@ void freeMem3Pointer(char*** array, int num);
 /************************************************************************/
 int splitStr(char* str, char ch, char arr[][10], int* cnt);
 int splitStrStack(char* str, char ch, char*** arr, int* cnt);
+
+/************************************************************************/
+/*                          指针数组,数组指针                           */
+/************************************************************************/
+void makeArray(int a[3][5]);
+void printArray(int a[3][5]);
+
+void makeArray3(int(*cube)[5][6], int row, int col, int height);
+void printArray3(int a[][5][6], int row, int col, int height);
 
 #endif
 

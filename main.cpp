@@ -265,7 +265,7 @@ int main(void)
 
 #endif
 
-#if 1
+#if 0
 	/************************************************************************/
 	/*                              字符串拆分                              */
 	/************************************************************************/
@@ -335,6 +335,26 @@ int main(void)
 	}
 
 	freeMem3Pointer(&array, cnt);
+
+#endif
+
+#if 1
+
+	u32 b = 0;
+	int a[3][5] = { 0 };
+	int c[4][5][6];
+
+	typedef int(ARRAY_INT_10)[10]; //ARRAY_INT_10 是 int[10]的别名
+	ARRAY_INT_10 B;  //相当于int b[10]
+
+/*
+	makeArray(a);
+	printArray(a);*/
+
+	printf("**********开始三维数组**********************\n");
+	makeArray3(c,4,5,6);
+	printArray3(c, 4, 5, 6);
+
 
 #endif
 

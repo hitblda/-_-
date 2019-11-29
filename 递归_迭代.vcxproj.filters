@@ -36,6 +36,9 @@
     <ClCompile Include="字符串拆分.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="指针数组_数组指针.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h">
