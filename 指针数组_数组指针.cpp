@@ -70,13 +70,13 @@ void printArray3(int a[][5][6], int row, int col, int height)
 	}
 	printf("\n");
 
-/*
+	printf("\n开始通过轮i,j,k打印输出array ******************\n");
 	i = 0; j = 0; k = 0;
 	for (i = 0; i < row; i++)
 	{
 		for (j = 0; j < col; j++)
 		{
-			for (k = 0; k < height; k++)
+			for (k = 0; k < height; k++) 
 			{
 				printf("a[%d][%d][%d]=%d\t", i, j, k, a[i][j][k]);
 			}
@@ -84,7 +84,19 @@ void printArray3(int a[][5][6], int row, int col, int height)
 		}
 		printf("\n");
 	}
-	printf("\n");*/
+	printf("\n");
+
+	printf("\n采用一维指针开始打印输出array ******************\n");
+	int* p = (int*)a;
+	for (i = 0; i < 120; i++)  //4*5*6 =120
+	{
+		printf("%d\n", p[i]);
+	}
+	//结果当然一样!!!
+	/************************************************************************/
+	/*                 由此,可见数组是连续存放数据                          */
+	/*                而且由a[i][j][k]的a[i][j][k] 最低位开始变化           */
+	/************************************************************************/
 
 }
 

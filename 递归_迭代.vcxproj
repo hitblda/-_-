@@ -131,8 +131,9 @@
     <ClCompile Include="strStract.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="二级指针做函数参数.cpp" />
-    <ClCompile Include="字符串拆分.cpp" />
+    <ClCompile Include="字符串拆分_查找.cpp" />
     <ClCompile Include="指针数组_数组指针.cpp" />
+    <ClCompile Include="结构体数据处理.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header.h" />

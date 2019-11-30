@@ -33,10 +33,13 @@
     <ClCompile Include="二级指针做函数参数.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="字符串拆分.cpp">
+    <ClCompile Include="指针数组_数组指针.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="指针数组_数组指针.cpp">
+    <ClCompile Include="字符串拆分_查找.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="结构体数据处理.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

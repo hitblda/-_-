@@ -15,6 +15,12 @@ typedef unsigned int u32;
 
 #define fastSortFN 
 #define QUEEN
+
+/*
+char *a = NULL;
+#define CHAR_NUM (sizeof(a)/sizeof(*a))
+*/
+
 //********************字符串长度测试********************/
 int getlength(char* str);
 int  charLenTest(char* str);
@@ -68,6 +74,30 @@ void printArray(int a[3][5]);
 
 void makeArray3(int(*cube)[5][6], int row, int col, int height);
 void printArray3(int a[][5][6], int row, int col, int height);
+
+/************************************************************************/
+/*                  找到字符数组里指定的字符串位置                      */
+/************************************************************************/
+int SearchKey(const char* table[], const int size, const char* key, int* pos);
+
+
+
+/************************************************************************/
+/*                          结构体数据处理                              */
+/************************************************************************/
+#define NAME_LEN  64
+
+struct teacher
+{
+	int id;				//占4字节
+	char* name;			//占4字节
+	char tName[8];		//tName[10]占12字节,tName[1~4]占4字节,tName[5~8]占8字节
+	struct teacher* p1; //占4字节
+};
+
+void copy_teacher_deep(struct teacher* to, struct teacher* from);
+void print_teacher(struct teacher tp);
+
 
 #endif
 

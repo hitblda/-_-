@@ -266,13 +266,9 @@ int main(void)
 #endif
 
 #if 0
-	/************************************************************************/
-	/*                              字符串拆分                              */
-	/************************************************************************/
 	char* str = (char*)"!@#$%,FGHHH,H@@@JKUY,T&**9,Aha";
-#if 0
 	/************************************************************************/
-	/* 栈上面开辟                                                                      */
+	/*                       栈上面开辟 ,字符串拆分                         */
 	/************************************************************************/
 	char arr[5][10]; //第一维度:有多少个串,第二个维度:每个串最多可以有多少个字符
 	int cnt = 0;
@@ -303,8 +299,10 @@ int main(void)
 
 	}
 #endif	
+#if 0
+	char* str = (char*)"!@#$%,FGHHH,H@@@JKUY,T&**9,Aha";
 	/************************************************************************/
-	/* 堆上面开辟 ,字符串拆分                                                                    */
+	/*                       堆上面开辟 ,字符串拆分                         */
 	/************************************************************************/
 	char** array = NULL;
 	int cnt = 0;
@@ -338,7 +336,10 @@ int main(void)
 
 #endif
 
-#if 1
+#if 0
+	/************************************************************************/
+	/*                     二\三维数组,做函数参数                           */
+	/************************************************************************/
 
 	u32 b = 0;
 	int a[3][5] = { 0 };
@@ -354,6 +355,110 @@ int main(void)
 	printf("**********开始三维数组**********************\n");
 	makeArray3(c,4,5,6);
 	printArray3(c, 4, 5, 6);
+
+#endif
+
+#if 0
+	/************************************************************************/
+	/*                          字符串查找                                  */
+	/************************************************************************/
+	const char* keyWords[] = {
+	"while",
+	"case",
+	"static",
+	"do",
+	"Love"
+	};
+
+	int pos = 0;
+	const char* key = "Lover";
+	int num = sizeof(keyWords)/sizeof(*keyWords);
+
+
+	int i = 0;
+	for (i=0;i<num;i++)
+	{
+		printf(" keyWords[%d]的值是%s\n", i, keyWords[i]);
+	}
+
+	SearchKey(keyWords,num, key, &pos);
+	if (pos < 0)
+	{
+		printf("没找到了@^@指定关键字%s!!!!!\n", key);
+	}
+	else
+		printf("找到了指定关键字%s在%d\n", key, pos);
+#endif
+
+#if 0
+/************************************************************************/
+/*                          结构体数据处理                              */
+/************************************************************************/
+	
+	struct teacher tp1 = { 0 }; //在栈上开辟的一个teacher结构体
+	struct teacher tp2 = { 0 };
+
+	tp1.id = 1;
+	tp1.name = (char*)malloc(sizeof(char)*NAME_LEN);
+	memset(tp1.name, 0, sizeof(char) * NAME_LEN);
+/*
+	strcpy(tp1.name, "zhang3");
+*/
+	printf("请输入结构体内数据名字:");
+	scanf("%s", tp1.name);
+	printf("\n请输入结构体内数据数值:");
+	scanf("%d",&tp1.id);
+	printf("结构体tp1中的内容是:\n");
+	print_teacher(tp1);
+
+	//copy_teacher(&tp2, &tp1);
+	copy_teacher_deep(&tp2, &tp1);
+	printf("结构体tp2中的内容是:\n");
+
+	print_teacher(tp2);
+
+	if (tp1.name != NULL) {
+		free(tp1.name);
+		tp1.name = NULL;
+	}
+
+	if (tp2.name != NULL) {
+		free(tp2.name);
+		tp2.name = NULL;
+	}
+#endif
+	
+#if 1
+
+	/************************************************************************/
+	/*						  求结构体中元素的偏移地址			            */
+	/************************************************************************/
+	struct teacher t1 = { 0 }; //在栈上开辟的一个teacher结构体
+	int id = t1.id;
+	const char* name = "asdfasf";
+
+	int offset1 = 0, offset2 = 0, offset3 = 0, offset4 = 0, offset5 = 0;
+
+	offset1 = (int) & (((struct teacher*)0)->id);
+	offset2 = (int) & (((struct teacher*)0)->name);
+	offset3 = (int) & (((struct teacher*)0)->tName);
+	offset4 = (int) & (((struct teacher*)0)->p1); 
+	offset5 = sizeof(t1);
+	printf("结构体内数据t1.id偏移值计算:%d\n",offset1);
+	printf("结构体内数据t1.name偏移值计算:%d\n", offset2);
+	printf("结构体内数据t1.tName偏移值计算:%d\n", offset3);
+	printf("结构体内数据t1.p1偏移值计算:%d\n", offset4);
+	printf("结构体总长度值计算:%d\n", offset5);
+	printf("*******************************************");
+	printf("\n结构体内数据t1.id占用的空间:");
+	printf("%d\n", offset2 - offset1);
+	printf("结构体内数据t1.name占用的空间:");
+	printf("%d\n", offset3 - offset2);
+	printf("结构体内数据t1.tName占用的空间:");
+	printf("%d\n", offset4 - offset3);
+	printf("结构体内数据t1.p1偏移值计算:");
+	printf("%d\n", offset5 - offset4);
+
 
 
 #endif
